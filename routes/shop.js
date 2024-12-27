@@ -3,9 +3,11 @@ const route = express.Router();
 const path = require("path");
 const root = require("../utils/path");
 const routeProducts = require("./admin");
+const { title } = require("process");
 
 route.get("/", (req, res, next) => {
-  res.sendFile(path.join(root, "views", "shop.html"));
+  const products = routeProducts.products;
+  res.render("shop", { prods: products, title: "shop room" });
   console.log("prr", routeProducts.products);
 });
 
